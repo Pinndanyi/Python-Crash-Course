@@ -1,0 +1,3 @@
+In Python you can use it as a caculator.
+In Python you can write a program of a game.
+In Python you can use differnt types of variables.
