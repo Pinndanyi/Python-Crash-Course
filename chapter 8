@@ -1,0 +1,236 @@
+chapter 8
+*
+def greet_user():
+	print("Hello")
+
+greet_user()
+
+
+*
+def greet_user(user_name):
+	print("Hello, " + user_name.title() + "!")
+
+greet_user('jessie')
+
+
+*
+def describe_pet(animal_type, pet_name):
+	print("\nI have a " + animal_type + ".")
+	print("My " + animal_type + "'s name is " + pet_name.title() + ".")
+
+describe_pet('hamster', 'harry')
+describe_pet('cat', 'ann')
+
+
+*
+def describe_pet(animal_type, pet_name):
+	print("\nI have a " + animal_type + ".")
+	print("My " + animal_type + "'s name is " + pet_name.title() + ".")
+
+describe_pet(animal_type = 'hamster', pet_name = 'harry')
+describe_pet(pet_name = 'harry', animal_type = 'hamster')
+
+
+*
+def describe_pet(pet_name, animal_type = 'dog'):   %%注意pet_name和animal_type的位置必须改变，否则调用函数时会将pet_name赋给animal_type
+	print("\nI have a " + animal_type + ".")
+	print("My " + animal_type + "'s name is " + pet_name.title() + ".")
+
+describe_pet(pet_name = 'willies')
+describe_pet(pet_name = 'harry', animal_type = 'hamster')
+
+
+*
+def describe_pet(pet_name, animal_type = 'dog'):
+	print("\nI have a " + animal_type + ".")
+	print("My " + animal_type + "'s name is " + pet_name.title() + ".")
+
+describe_pet('willie')
+describe_pet(pet_name = 'willie')
+
+describe_pet('harry', 'hamster')
+describe_pet(pet_name = 'harry', animal_type = 'hamster')
+
+
+*
+def get_formatted_name(first_name, last_name):
+	full_name = first_name + " " + last_name
+	return full_name.title()
+
+musician = get_formatted_name('jimi', 'hendrix')
+print(musician)
+
+
+*
+def get_formatted_name(first_name, last_name, middle_name=''):
+	if middle_name:
+		full_name = first_name + ' ' + middle_name + ' ' + last_name
+	else:
+		full_name = first_name + ' ' + last_name
+	return full_name.title()
+
+musician = get_formatted_name('jimi', 'hendrix')
+print(musician)
+
+musician = get_formatted_name('john', 'hooker', 'lee')
+print(musician)
+
+
+*
+def build_person(first_name, last_name):
+	person = {'first': first_name, 'last': last_name}
+	return person
+
+musician = build_person('jimi', 'hendrix')
+print(musician)
+
+
+*
+def build_person(first_name, last_name, age = ''):
+	person = {'first': first_name, 'last': last_name}
+	if age:
+		person['age'] = age
+	return person
+
+musician = build_person('jimi', 'hendrix', age = 27)
+print(musician)
+
+
+*
+def get_formatted_name(first_name, last_name):
+	full_name = first_name + " " + last_name
+	return full_name.title()
+
+while True:
+	print("\nPlease tell me your name: ")
+	print("Enter 'q' at any time to quit.")
+
+	f_name = input("First name: ")
+	if f_name == 'q':
+		break
+
+	l_name = input("Last_name: ")
+	if l_name == 'q':
+		break
+
+	formatted_name = get_formatted_name(f_name, l_name)
+	print("\nHello, " + formatted_name + "!")
+
+
+*
+def greet_users(names):
+	for name in names:
+		msg = "Hello, " + name.title() + "!"
+		print(msg)
+
+usernames = ['hanah', 'ty', 'margot']
+greet_users(usernames)
+
+
+*
+def print_models(unprinted_designs, completed_models):
+	while unprinted_designs:
+		current_design = unprinted_designs.pop()
+		print("Printing model: " + current_design)
+		completed_models.append(current_design)
+
+def show_completed_models(completed_models):
+	print("\nThe following models hve been printed: ")
+	for design in completed_models:
+		print(design)
+
+unprinted_designs = ['iphone case', 'robot pendant', 'dodecahedron']
+completed_models = []
+
+print_models(unprinted_designs[:], completed_models)   %% [:]确保不丢失原本的列表
+show_completed_models(completed_models)
+
+print("\n")
+print(unprinted_designs)
+
+
+*
+def make_pizza(*toppings):                   %%形参名*toppings 中的星号让Python创建一个名为toppings 的空元组，并将收到的所有值都封装到这个元组中
+	print(toppings)
+
+make_pizza('pepperoni')
+make_pizza('mushrooms', 'green peppers', 'extra cheese')
+
+
+*
+def make_pizza(*toppings):
+	print("\nMaking a pizza with the following toppins: ")
+	for topping in toppings:
+		print("-" + topping)
+
+make_pizza('pepperoni')
+make_pizza('mushrooms', 'green peppers', 'extra cheese')
+
+
+*如果要让函数接受不同类型的实参，必须在函数定义中将接纳任意数量实参的形参放在最后。Python先匹配位置实参和关键字实参，再将余下的实参都收集到最后一个形参中。
+pizza.py
+def make_pizza(size, *toppings):
+	print("\nMaking a " + str(size) + "-inch pizza with the following toppins: ")
+	for topping in toppings:
+		print("-" + topping)
+
+make_pizza(16, 'pepperoni')
+make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+
+
+*形参**user_info 中的两个星号让Python创建一个名为user_info 的
+空字典，并将收到的所有名称—值对都封装到这个字典中
+def build_profile(first, last, **user_info):
+	profile = {}
+	profile['first_name'] = first
+	profile['last_name'] = last
+	for key, value in user_info.items():
+		profile[key] = value
+	return profile
+
+user_profile = build_profile('albert', 'einstein',location='princeton',field='physics')
+print(user_profile)
+
+
+*
+make_pizza.py
+import pizza
+
+pizza.make_pizza(16, 'pepperoni')
+pizza.make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+
+OR:
+from pizza import make_pizza
+
+make_pizza(16, 'pepperoni')
+make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+
+OR:
+from pizza import make_pizza as mp
+
+mp(16, 'pepperoni')
+mp(12, 'mushrooms', 'green peppers', 'extra cheese')
+
+OR:
+import pizza as p
+
+p.make_pizza(16, 'pepperoni')
+p.make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+
+OR:
+from pizza import *           %import all the functions in pizza
+
+make_pizza(16, 'pepperoni')
+make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+
+
+*
+建议代码行的长度不要超过79字符，这样只要编辑器窗口适中，就能看到整行代码。如果形参很多，导致函数定义的长度超过了
+79字符，可在函数定义中输入左括号后按回车键，并在下一行按两次Tab键，从而将形参列表和只缩进一层的函数体区分开来。
+def function_name(
+        parameter_0, parameter_1, parameter_2,
+        parameter_3, parameter_4, parameter_5):
+    function body...
+
+
+*
