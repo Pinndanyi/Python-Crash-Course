@@ -1,0 +1,118 @@
+Chapter 7   [ Input and while loop]
+
+message = input("Tell me something, and I will repeat it back to you: ")
+print(message)
+
+
+prompt = "If you tell us who you are, we can personalize the messages you see."
+prompt += "\nWhat is your first name? "
+
+name = input(prompt)
+print("\nHello, " + name + "!")
+
+
+>>> age = input("How old are you? ")
+How old are you? 28
+>>> age
+'28'
+>>> age = int(age)
+>>> age >= 18
+True
+
+
+height = input("How tall are you? ")
+height = int(height)
+
+if height >= 36:
+	print("\nYou are tall enough to ride!")
+else:
+	print("\nYou'll be able to ride when you are a little older.")
+
+
+#求模运算符 （%）,求余数
+  >>> 4 % 2
+  0
+  >>> 4 % 3
+  1
+  >>> 7 % 3
+  1
+  >>> 5 % 3
+  2
+
+number = input("Enter a number, and I'll tell you if it's even or odd: ")
+number = int(number)
+
+if number % 2 ==0:
+	print("\nThe number " + str(number) + " is even.")
+else:
+	print("\nThe number " + str(number) + " is odd.")
+
+
+current_number = 1
+while current_number <= 5:
+	print(current_number)
+	current_number += 1
+
+
+prompt = "\nTell me something and I'll repeat it to you. "
+prompt += "\nEnter 'quit' to end the prompt. "
+
+message = ""
+while message != 'quit':
+	message = input(prompt)
+
+	if massage != 'quit':
+		print(message)
+
+
+prompt = "\nTell me something and I'll repeat it to you. "
+prompt += "\nEnter 'quit' to end the prompt. "
+
+active = True
+while active:
+	message = input(prompt)
+
+	if massage = 'quit':
+		active == False
+	else:
+		print(message)
+
+
+unconfirmed_users = ['alice', 'brian', 'candance']
+confirmed_users = []
+
+while unconfirmed_users:
+	current_user = unconfirmed_users.pop()
+
+	print("Varify user: " + current_user.title())
+	confirmed_users.append(current_user)
+
+print("\nThe following users have been confirmed: ")
+for confirmed_user in confirmed_users:
+	print(confirmed_user.title())
+
+
+pets = ['dog', 'cat', 'dog', 'goldfish', 'cat', 'rabbit', 'cat']
+print(pets)
+
+while 'cat' in pets:
+	pets.remove('cat')
+
+print(pets)
+
+
+responses = {}
+polling_active = True
+
+while polling_active:
+	name = input("\nWhat is your name? ")
+	response = input("Which mountain would you like to climb someday? ")
+	responses[name] = response
+
+	repeat = input("Would you like to let another people to answer? (yes/ no)")
+	if repeat == 'no':
+		polling_active = False
+
+print("\n---Polling Results---")
+for name, response in responses.items():
+	print(name + " would like to climb " + response + ".")
